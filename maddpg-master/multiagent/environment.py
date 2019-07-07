@@ -175,7 +175,7 @@ class MultiAgentEnv(gym.Env):
                     agent.action.u[1] += action[0][3] - action[0][4]
                 else:
                     agent.action.u = action[0]
-            sensitivity = 5.0
+            sensitivity = 3.0
             if agent.accel is not None:
                 sensitivity = agent.accel
             agent.action.u *= sensitivity
@@ -270,12 +270,12 @@ class MultiAgentEnv(gym.Env):
                 for line in range(len(self.world.entities), len(self.viewers[i].geoms)):
                     self.viewers[i].geoms.pop()
             uav_position = self.world.entities[0].state.p_pos
-            for l, landmark in enumerate(self.world.landmarks):
+            '''for l, landmark in enumerate(self.world.landmarks):
                     dis = np.sqrt(np.sum(np.square([uav_position - landmark.state.p_pos])))
                     if dis <= 0.7:
                         temp = rendering.make_line(uav_position, landmark.state.p_pos)
                         temp.set_color(0, 245, 255)
-                        self.viewers[i].geoms.append(temp)
+                        self.viewers[i].geoms.append(temp)'''
 
             # render to display or array
             results.append(self.viewers[i].render(return_rgb_array=mode == 'rgb_array'))
